@@ -2,22 +2,15 @@
 
 Software tools used by the engineering groups to analyze the engineering data products from the Namakanui instrument.
 
-Used with:
-
-- dcm_att.py
-- trx_fast.py:
-    - trx_sweep_b3.py (for band 3 [alaihi] currently)
-- if_power.py
-
-specifically the data files they emit.
-
-Used for:
-
-- produce plots:
-    - specify x
-    - y comes specified
-- produce csv data file:
-    - specify columns to include
+- if_power_plotter.py:
+    - plots the data files produced by if_power.py
+    - data files usually found in /jac_logs/hetLogs/{RX}/if_power/
+- trx_plotter.py:
+    - plots the data files produced by trx_fast.py (and trx_sweep_b3.py)
+    - data files usually found in /jac_logs/hetLogs/{RX}/trx/
+- dcm_att_plotter.py:
+    - plots the data files produced by dcm_att.py
+    - data files usually found in /jac_logs/hetLogs/{RX}/att/
 
 ## if_power_plotter.py
 
@@ -25,6 +18,11 @@ Used to plot the data products of if_power.py
 
 - create scatter plot
 - create csv data file
+
+TODO:
+
+- Create difference plots if given a pair of attenuation tables
+- Create difference csv file
 
 ### Usage
 
@@ -45,6 +43,13 @@ $ ./if_power_plotter.py data_file --csv
 ## trx_plotter.py
 
 Used to plot the data products of trx_fast.py (and trx_sweep_b3.py).
+
+TODO:
+
+- allow plotted columns to be increased selectively
+- allow emitted csv columns to be paired selectively
+- automatically compute header/footer:
+    - remove parameter
 
 ### Usage
 
@@ -117,6 +122,13 @@ $ ./trx_plotter.py data_file --column VAL
 ## dcm_att_plotter.py
 
 Used to plot the data products of dcm_att.py.
+
+TODO:
+
+- allow plotted columns to be increased selectively
+- allow emitted csv columns to be paired selectively
+- automatically compute header/footer:
+    - remove parameter
 
 ### Usage 
 
