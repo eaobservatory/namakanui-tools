@@ -2,7 +2,8 @@
 """
 IF Power Plotter
 """
-from lib.parser import if_power, fancy_title
+from lib.parser import if_power
+from lib.util import fancy_title
 import pandas as pd
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
@@ -22,7 +23,7 @@ if __name__ == '__main__':
 
     df = pd.read_csv(path, sep=',', engine='python')
     if csv:
-        csv_name = f'if_power_rx_{path.stem}.csv'
+        csv_name = f'if_power_{rx}_{path.stem}{path.suffix}.csv'
         df.to_csv(csv_name, index=False)
         print(f'produced: {csv_name}')
 
