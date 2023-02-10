@@ -40,12 +40,12 @@ if __name__ == '__main__':
             print(fname)
             exit()
 
-        positive = df_out  # attenuation increased
+        positive = df_out[df_out.change > 0]  # attenuation decreased
         negative = df_out[df_out.change < 0]  # attenuation decreased
         plt.scatter(positive.lo_ghz, positive.change, s=2, color='g')
         plt.scatter(negative.lo_ghz, negative.change, s=2, color='r')
         plt.axhline(color='black')
-        plt.title(f'{fancy_title(rx)} New_Att - Old_Att')
+        plt.title(f'{fancy_title(rx)} New_Att - Old_Att\n{data_name}')
         plt.ylabel('att change')
         plt.xlabel('LO (GHz)')
         fname += '.png'
@@ -55,11 +55,12 @@ if __name__ == '__main__':
 
     else:
         # normal plotting
-        good_range = (-2.5, -0.5)
+        lower, upper = (-2.5, -0.5)  # acceptable IF power range
         df = pd.read_csv(path, sep=',', engine='python')
+        df = df.dropna()
         data_set = f'{path.stem}{path.suffix}'
         rx = path.parent.parent.stem
-        title = f'IF Power {fancy_title(rx)}'
+        title = f'IF Power {fancy_title(rx)}\n{data_set}'
         fname = f'if_power_{rx}_{data_set}' 
 
         if csv:
@@ -67,7 +68,17 @@ if __name__ == '__main__':
             df.to_csv(fname, index=False)
             print(fname)
             exit()
-        plt.scatter(df.lo_ghz, df.if_power)
+
+        U = df.if_power <= upper
+        L = df.if_power >= lower
+        good = df[L & U]
+        U = df.if_power > upper
+        L = df.if_power < lower
+        bad = df[L | U]
+        plt.scatter(good.lo_ghz, good.if_power, s=2, color='g')
+        plt.scatter(bad.lo_ghz, bad.if_power, s=2, color='r')
+        plt.axhline(lower, color='black', linestyle='--')
+        plt.axhline(upper, color='black', linestyle='--')
         plt.xlabel('LO (GHz)')
         plt.ylabel('IF Power (V)')
         plt.title(title)
