@@ -4,45 +4,78 @@ Software tools used by the engineering groups to analyze the engineering data pr
 
 - if_power_plotter.py:
     - plots the data files produced by if_power.py
-    - data files usually found in /jac_logs/hetLogs/{RX}/if_power/
+    - plots the data files produced by att_table.py
+    - data files usually found in:
+        - /jac_logs/hetLogs/{Rx}/if_power/
+        - /jac_sw/itsroot/src/namakanui_instrument/xml/ 
 - trx_plotter.py:
     - plots the data files produced by trx_fast.py (and trx_sweep_b3.py)
-    - data files usually found in /jac_logs/hetLogs/{RX}/trx/
+    - data files usually found in /jac_logs/hetLogs/{Rx}/trx/
 - dcm_att_plotter.py:
     - plots the data files produced by dcm_att.py
-    - data files usually found in /jac_logs/hetLogs/{RX}/att/
+    - data files usually found in /jac_logs/hetLogs/{Rx}/att/
 
 ## if_power_plotter.py
 
-Used to plot the data products of if_power.py
+Used to plot the data products of if_power.py and att_table.py.
 
+- data files usually found in:
+    - /jac_logs/hetLogs/{Rx}/if_power/
+    - /jac_sw/itsroot/src/namakanui_instrument/xml/ 
 - create scatter plot
 - create csv data file
+- create difference plot between a pair of attenuation tables
+- create a difference csv data file between a pair of attenuation tables
+
+<p align="center">
+<img src=https://i.imgur.com/PSaAFmS.png alt="" width="500"/>
+</p>
+<p align = "center">Example of a difference plot</p>
+
+<p align="center">
+<img src=https://i.imgur.com/xQnBg6p.png alt="" width="500"/>
+</p>
+<p align = "center">Example of an IF power plot</p>
 
 TODO:
 
-- Create difference plots if given a pair of attenuation tables
-- Create difference csv file
+- Add parameter to control x axis increment (plotting)
+- Add quiet parameter
 
 ### Usage
 
-Plots are always created, a csv data file can optionally be created.
-
-Make plot
+Make a plot
 
 ```bash
 $ ./if_power_plotter.py data_file
 ```
 
-Emit CSV
+Make a CSV
 
 ```bash
 $ ./if_power_plotter.py data_file --csv
+
+```
+
+Create difference plot of two attenuation tables
+
+```bash
+$ ./if_power_plotter.py new_att_table --diff old_att_table
+```
+
+Create difference csv data file of two attenuation tables
+
+```bash
+$ ./if_power_plotter.py new_att_table --diff old_att_table --csv
 ```
 
 ## trx_plotter.py
 
 Used to plot the data products of trx_fast.py (and trx_sweep_b3.py).
+
+- data files usually found in /jac_logs/hetLogs/{Rx}/trx/
+- create scatter plot
+- create csv data file
 
 TODO:
 
@@ -53,13 +86,13 @@ TODO:
 
 ### Usage
 
-Plots are always created, a csv data file can optionally be created.
+Make a plot
 
 ```bash
 $ ./trx_plotter.py data_file
 ```
 
-Emit CSV
+Make a CSV
 
 ```bash
 $ ./trx_plotter.py data_file --csv
@@ -123,6 +156,10 @@ $ ./trx_plotter.py data_file --column VAL
 
 Used to plot the data products of dcm_att.py.
 
+- data files usually found in /jac_logs/hetLogs/{Rx}/att/
+- create collage of plots
+- create csv data file
+
 TODO:
 
 - allow plotted columns to be increased selectively
@@ -131,8 +168,6 @@ TODO:
     - remove parameter
 
 ### Usage 
-
-Plots are always created, a csv data file can optionally be created.
 
 ```bash
 $ ./dcm_att_plotter.py data_file
