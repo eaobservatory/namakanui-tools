@@ -1,9 +1,9 @@
 __all__ = ['fancy_title', 'HAWAIIAN_NAMES', 'ALMA_BAND', 'ASCII_NAMES']
 
-ASCII = ['alaihi', 'aweoweo', 'uu'] 
+ASCII = ['alaihi', 'uu', 'aweoweo'] 
 BANDS = ['3', '6', '7']
 ABBR_BAND_NAMES = ['b3', 'b6', 'b7']
-HAWAIIAN = ['‘Ala‘ihi', '‘Āweoweo', '‘Ū‘ū']
+HAWAIIAN = ['‘Ala‘ihi', '‘Ū‘ū', '‘Āweoweo']
 
 '''
 b3     -> Ala'ihi
