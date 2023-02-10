@@ -7,6 +7,7 @@ __all__ = ['if_power', 'dcm_att', 'trx']
 def if_power(parser):
     parser.add_argument('data_file', type=Path, help='Path to the data file to make plots of.')
     # parser.add_argument('--title', help='Optional title for the produced plot')
+    parser.add_argument('--diff', type=Path, help='An attenuation table, when this is passed <data_file> must also be an attenuation table. The plot emitted will now be the difference plot of  data_file - --diff and if a CSV is emitted it will be the difference CSV.')
     parser.add_argument('--csv', default=False, action='store_true', help='Pass flag to also emit CSV file')
     return parser
 
