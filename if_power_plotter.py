@@ -46,7 +46,7 @@ if __name__ == '__main__':
         plt.scatter(negative.lo_ghz, negative.change, s=2, color='r')
         plt.axhline(color='black')
         plt.title(f'{fancy_title(rx)} New_Att - Old_Att\n{data_name}')
-        plt.ylabel('att change')
+        plt.ylabel('Attenuation Change (8bit counts)')
         plt.xlabel('LO (GHz)')
         fname += '.png'
         plt.savefig(fname)
