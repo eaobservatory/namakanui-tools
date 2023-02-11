@@ -180,6 +180,16 @@ Used to plot the data products of dcm_att.py.
 - create collage of plots
 - create csv data file
 
+<p align="center">
+<img src=https://i.imgur.com/XDsVpJQ.png alt="" width="1000"/>
+</p>
+<p align = "center">Example collage of data output by dcm_att.py</p>
+
+```bash
+$ # Parameters used to generate the example plot
+$ ./dcm_att_plotter.py ~/20221031.1136
+```
+
 TODO:
 
 - allow plotted columns to be increased selectively
