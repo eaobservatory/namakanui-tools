@@ -45,20 +45,23 @@ if __name__ == '__main__':
     padh = args.padh
 
     RX = path.parent.parent.stem
-    DATA_SET = f'{RX}_{path.stem.split("_")[-1]}'
+    DATA_SET = f'{path.stem}{path.suffix}'
 
     df = pd.read_csv(path, sep=sep, skiprows=head_size, skipfooter=foot_size, engine='python')
     x_min = int(df[xcol][0])
     x_max = int(df[xcol][df[xcol].size - 1])
 
-    # if plot_dir is not there, create it
-    if not plot_dir.exists():
-        plot_dir.mkdir()
 
     if csv:
         fname = f'dcm_att_{RX}_{DATA_SET}.csv'
         df.to_csv(fname,index=False)
-        print(f'produced: {fname}')
+        print(fname)
+        exit()
+
+    # if plot_dir is not there, create it
+    if not plot_dir.exists():
+        plot_dir.mkdir()
+
     upper = ['0U', '1U']
     lower = ['0L', '1L']
     polarizations = {}
@@ -68,14 +71,14 @@ if __name__ == '__main__':
         name = Path(f'{plot_dir}/dcm_att_{RX}__{col}_{DATA_SET}.png')
         plots.append(name)
         Y = df[col]
-        plt.scatter(df[xcol], Y, label=col)
+        plt.scatter(df[xcol], Y, label=col, s=2)
         plt.legend()
         plt.xlim((x_min, x_max))
         plt.xticks(range(x_min, x_max + 1, x_inc))
         plt.ylim((y_min, y_max))
         plt.yticks(range(y_min, y_max, y_inc))
-        plt.title(f'{col} {fancy_title(RX)}')
-        plt.ylabel('Attenuation (?)')
+        plt.title(f'{col} {fancy_title(RX)}\n{DATA_SET}')
+        plt.ylabel('Attenuation (8bit counts)')
         plt.ylabel(y_label_maker(col))
         plt.xlabel('LO (GHz)')
         plt.savefig(name, dpi=dpi)
@@ -92,7 +95,7 @@ if __name__ == '__main__':
     plot_name = f'dcm_att_{RX}_{DATA_SET}.png'
     collage.save(plot_name)
     if not quiet:
-        print(f'produced: {plot_name}')
+        print(plot_name)
 
     # clean up the sub plots
     if clean_up:
