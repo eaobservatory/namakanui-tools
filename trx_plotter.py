@@ -47,16 +47,19 @@ if __name__ == '__main__':
     x_min = int(df[xcol][0])
     x_max = int(df[xcol][df[xcol].size - 1])
 
-    # if plot_dir is not there, create it
-    if not plot_dir.exists():
-        plot_dir.mkdir()
 
     df_trx = df.filter(regex='^trx', axis=1)
     if csv:
         df_trx.insert(0, 'lo_ghz', df[xcol], True)  # add lo_ghz column if emitting csv
         fname = f'trx_{DATA_SET}.csv'
         df_trx.to_csv(fname, index=False)
-        print(f'produced: {fname}')
+        print(fname)
+        exit()
+
+    # if plot_dir is not there, create it
+    if not plot_dir.exists():
+        plot_dir.mkdir()
+
     upper = ['0U', '1U']
     lower = ['0L', '1L']
     polarizations = {}
@@ -80,7 +83,8 @@ if __name__ == '__main__':
             plt.xticks(range(x_min, x_max + 1, x_inc))
             plt.ylim((y_min, y_max))
             plt.yticks(range(y_min, y_max, y_inc))
-        plt.title(f'Trx {fancy_title(RX)} {p}')
+        data_set = DATA_SET.split('_')[1]
+        plt.title(f'Trx {fancy_title(RX)} {p}\n{data_set}')
         plt.ylabel('Trx (K)')
         plt.xlabel('LO (GHz)')
         plt.savefig(name, dpi=dpi)
@@ -97,7 +101,7 @@ if __name__ == '__main__':
     plot_name = f'trx_{DATA_SET}.png'
     collage.save(plot_name)
     if not quiet:
-        print(f'produced: {plot_name}')
+        print(plot_name)
 
     # clean up the sub plots
     if clean_up:
