@@ -32,10 +32,20 @@ Used to plot the data products of if_power.py and att_table.py.
 </p>
 <p align = "center">Example of a difference plot</p>
 
+```bash
+$ # parameters used to generate example plot
+$ ./if_power_plotter.py ~/b3_att_table.20230126.1419.txt --diff ~/b3_att_table.20210121.1522.txt
+```
+
 <p align="center">
 <img src=https://i.imgur.com/xQnBg6p.png alt="" width="500"/>
 </p>
 <p align = "center">Example of an IF power plot</p>
+
+```bash
+$ # parameters used to generate example plot
+$ ./if_power_plotter.py ~/20230127.0949
+```
 
 TODO:
 
@@ -77,10 +87,20 @@ Used to plot the data products of trx_fast.py (and trx_sweep_b3.py).
 - create scatter plot
 - create csv data file
 
+<p align="center">
+<img src=https://i.imgur.com/lVpju3r.png alt="" width="750"/>
+</p>
+<p align = "center">Example of a Trx plot</p>
+
+```bash
+$ # Parameters used to generate the example plot
+$ ./trx_plotter.py ~/b6_trx_20201117.1612.txt --lsb --ymin 40 --ymax 90 --yinc 5
+```
+
 TODO:
 
 - allow plotted columns to be increased selectively
-- allow emitted csv columns to be paired selectively
+- allow emitted csv columns to be pared selectively
 - automatically compute header/footer:
     - remove parameter
 
