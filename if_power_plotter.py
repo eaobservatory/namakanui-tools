@@ -3,7 +3,7 @@
 IF Power Plotter
 """
 from lib.parser import if_power
-from lib.util import fancy_title, ASCII_NAMES
+from lib.extras import fancy_title, ASCII_NAMES
 import pandas as pd
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
